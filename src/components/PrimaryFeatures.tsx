@@ -39,7 +39,7 @@ const features = [
   {
     name: 'Invite friends to grow your community',
     description:
-      'For every friend you invite to Propelond, you get early access to new features and exclusive content. And it\'s even better when you invite fellow African creators.',
+      'For every friend you invite to Propelond, you get early access to new features and exclusive content. And it&apos;s even better when you invite fellow African creators.',
     icon: DeviceUserIcon,
     screen: InviteScreen,
   },
@@ -231,7 +231,7 @@ function StocksScreen(props: ScreenProps) {
     <AppScreen className="w-full">
       <MotionAppScreenHeader {...(props.animated ? headerAnimation : {})}>
         <AppScreen.Title>Feed</AppScreen.Title>
-        <AppScreen.Subtitle>Today's African stories</AppScreen.Subtitle>
+        <AppScreen.Subtitle>Today&apos;s African stories</AppScreen.Subtitle>
       </MotionAppScreenHeader>
       <MotionAppScreenBody
         {...(props.animated ? { ...bodyAnimation, custom: props.custom } : {})}
