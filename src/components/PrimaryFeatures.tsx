@@ -349,7 +349,7 @@ function InvestScreen(props: ScreenProps) {
               </div>
               <div className="flex-1">
                 <textarea
-                  placeholder="What's your African story today?"
+                  placeholder="What&apos;s your African story today?"
                   className="w-full border-0 bg-transparent text-sm text-gray-900 placeholder-gray-500 resize-none focus:outline-none focus:ring-0"
                   rows={4}
                 />
@@ -610,7 +610,7 @@ export function PrimaryFeatures() {
           <p className="mt-2 text-lg text-gray-400">
             Propelond was built for African creators like you who want to share 
             their culture, connect with their community, and amplify their voices 
-            globally. If other platforms don't understand your story, Propelond does.
+            globally. If other platforms don&apos;t understand your story, Propelond does.
           </p>
         </div>
       </Container>

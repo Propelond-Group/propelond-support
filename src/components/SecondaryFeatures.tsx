@@ -199,7 +199,7 @@ export function SecondaryFeatures() {
             Now is the time to share your story.
           </h2>
           <p className="mt-2 text-lg text-gray-600">
-            Every African story deserves to be heard. With Propelond, it's never 
+            Every African story deserves to be heard. With Propelond, it&apos;s never 
             too late to connect with your community and amplify your voice globally.
           </p>
         </div>

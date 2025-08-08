@@ -184,7 +184,7 @@ export function AppDemo() {
               </div>
             </div>
             <div className="text-sm text-gray-900 mb-3">
-              Just made my grandmother's famous Jollof Rice recipe! 🇳🇬 The secret is in the tomato paste and the perfect rice texture. Who else loves a good Jollof? #NigerianFood #JollofRice
+              Just made my grandmother&apos;s famous Jollof Rice recipe! 🇳🇬 The secret is in the tomato paste and the perfect rice texture. Who else loves a good Jollof? #NigerianFood #JollofRice
             </div>
             <div className="bg-gray-50 rounded-lg p-3 mb-3">
               <div className="text-xs text-gray-500 mb-1">📸 Photo</div>
