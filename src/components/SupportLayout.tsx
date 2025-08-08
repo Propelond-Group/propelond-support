@@ -33,12 +33,6 @@ export function SupportLayout({
             {/* Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
               <Link 
-                href="/contact" 
-                className="text-sm text-gray-600 hover:text-[#f44336] transition-colors"
-              >
-                Contact
-              </Link>
-              <Link 
                 href="/" 
                 className="text-sm text-gray-600 hover:text-[#f44336] transition-colors"
               >
@@ -71,17 +65,6 @@ export function SupportLayout({
           {subtitle && (
             <p className="mt-3 text-center text-lg text-gray-600">{subtitle}</p>
           )}
-          <div className="mt-4 text-center">
-            <Link 
-              href="/" 
-              className="inline-flex items-center text-sm text-[#f44336] hover:text-[#e53935] transition-colors"
-            >
-              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              Back to Home
-            </Link>
-          </div>
         </div>
         <div className="-mx-4 mt-10 flex-auto bg-white px-4 py-10 shadow-2xl shadow-gray-900/10 sm:mx-0 sm:flex-none sm:rounded-5xl sm:p-24">
           {children}

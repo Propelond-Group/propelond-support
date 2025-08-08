@@ -39,7 +39,7 @@ const features = [
   {
     name: 'Invite friends to grow your community',
     description:
-      'For every friend you invite to Propelond, you get early access to new features and exclusive content. And it&apos;s even better when you invite fellow African creators.',
+      'For every friend you invite to Propelond, you get early access to new features and exclusive content. And it\'s even better when you invite fellow African creators.',
     icon: DeviceUserIcon,
     screen: InviteScreen,
   },
@@ -349,7 +349,7 @@ function InvestScreen(props: ScreenProps) {
               </div>
               <div className="flex-1">
                 <textarea
-                  placeholder="What&apos;s your African story today?"
+                  placeholder="What\'s your African story today?"
                   className="w-full border-0 bg-transparent text-sm text-gray-900 placeholder-gray-500 resize-none focus:outline-none focus:ring-0"
                   rows={4}
                 />

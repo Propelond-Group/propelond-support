@@ -6,7 +6,7 @@ const features = [
   {
     name: 'Share any content',
     description:
-      'Whether it&apos;s photos, videos, stories, or live streams, share your African culture with the world.',
+      'Whether it\'s photos, videos, stories, or live streams, share your African culture with the world.',
     icon: DeviceArrowIcon,
   },
   {
