@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   title: 'Contact Support',
 }
 
-export default function Contact({
-  searchParams,
-}: {
-  searchParams?: { [key: string]: string | string[] | undefined }
-}) {
+type ContactPageProps = {
+  searchParams?: Record<string, string | string[]>
+}
+
+export default function Contact({ searchParams }: ContactPageProps) {
   const topicParam = typeof searchParams?.topic === 'string' ? searchParams.topic : undefined
   const defaultCategory = topicParam === 'account-deletion' ? 'account-deletion' : ''
   return (
