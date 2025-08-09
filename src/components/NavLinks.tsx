@@ -13,6 +13,7 @@ export function NavLinks() {
     ['Reviews', '/#reviews'],
     ['Privacy Policy', '/privacy'],
     ['Terms of Service', '/terms'],
+    ['Child Safety', '/child-safety'],
   ].map(([label, href], index) => (
     <Link
       key={label}

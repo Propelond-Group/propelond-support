@@ -83,6 +83,8 @@ export function Header() {
                             <MobileNavLink href="/#reviews">Reviews</MobileNavLink>
                             <MobileNavLink href="/privacy">Privacy</MobileNavLink>
                             <MobileNavLink href="/terms">Terms of Service</MobileNavLink>
+                            <MobileNavLink href="/child-safety">Child Safety</MobileNavLink>
+                            <MobileNavLink href="/contact">Support</MobileNavLink>
                           </div>
                           <div className="mt-8 flex flex-col gap-4">
                             <Button href="/contact" variant="outline">
