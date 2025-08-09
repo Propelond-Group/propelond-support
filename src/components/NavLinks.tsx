@@ -14,6 +14,7 @@ export function NavLinks() {
     ['Privacy Policy', '/privacy'],
     ['Terms of Service', '/terms'],
     ['Child Safety', '/child-safety'],
+    ['Account Deletion', '/account-deletion'],
   ].map(([label, href], index) => (
     <Link
       key={label}

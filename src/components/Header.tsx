@@ -85,6 +85,7 @@ export function Header() {
                             <MobileNavLink href="/terms">Terms of Service</MobileNavLink>
                             <MobileNavLink href="/child-safety">Child Safety</MobileNavLink>
                             <MobileNavLink href="/contact">Support</MobileNavLink>
+                            <MobileNavLink href="/account-deletion">Account Deletion</MobileNavLink>
                           </div>
                           <div className="mt-8 flex flex-col gap-4">
                             <Button href="/contact" variant="outline">
