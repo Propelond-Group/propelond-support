@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { type Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -593,7 +594,6 @@ export default function Privacy() {
             </li>
           </ul>
           
-          <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
         </div>
       </div>
     </div>
