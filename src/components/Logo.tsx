@@ -12,15 +12,17 @@ export function Logomark(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-export function Logo(props: React.ComponentPropsWithoutRef<'div'>) {
+export function Logo({ className }: { className?: string }) {
+  const imageClassName = className ? className : 'h-auto w-auto'
   return (
-    <div {...props}>
+    <div className="inline-flex items-center">
       <Image
         src="/icon/logo.svg"
         alt="Propelond Logo"
         width={106}
         height={40}
-        className="h-auto w-auto"
+        className={imageClassName}
+        priority
       />
     </div>
   )

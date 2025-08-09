@@ -17,12 +17,7 @@ import { NavLinks } from '@/components/NavLinks'
 function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M5 6h14M5 18h14M5 12h14"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M5 6h14M5 18h14M5 12h14" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
@@ -30,45 +25,31 @@ function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 function ChevronUpIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M17 14l-5-5-5 5"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M17 14l-5-5-5 5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
 
 function MobileNavLink(
-  props: Omit<
-    React.ComponentPropsWithoutRef<typeof PopoverButton<typeof Link>>,
-    'as' | 'className'
-  >,
+  props: Omit<React.ComponentPropsWithoutRef<typeof PopoverButton<typeof Link>>, 'as' | 'className'>,
 ) {
-  return (
-    <PopoverButton
-      as={Link}
-      className="block text-base/7 tracking-tight text-gray-700"
-      {...props}
-    />
-  )
+  return <PopoverButton as={Link} className="block text-base/7 tracking-tight text-gray-700" {...props} />
 }
 
 export function Header() {
   return (
-    <header>
+    <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/90 border-b border-gray-100">
       <nav>
-        <Container className="relative z-50 flex justify-between py-8">
-          <div className="relative z-10 flex items-center gap-16">
-            <Link href="/" aria-label="Home">
-              <Logo className="h-6 w-auto" />
+        <Container className="relative z-50 flex justify-between py-4 lg:py-5">
+          <div className="relative z-10 flex items-center gap-8 lg:gap-12">
+            <Link href="/" aria-label="Home" className="flex items-center">
+              <Logo className="h-6 w-auto lg:h-7" />
             </Link>
-            <div className="hidden lg:flex lg:gap-10">
+            <div className="hidden lg:flex lg:gap-8">
               <NavLinks />
             </div>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 lg:gap-6">
             <Popover className="lg:hidden">
               {({ open }) => (
                 <>
@@ -76,13 +57,7 @@ export function Header() {
                     className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-2 hover:bg-gray-200/50 hover:stroke-gray-600 focus:not-data-focus:outline-hidden active:stroke-gray-900"
                     aria-label="Toggle site navigation"
                   >
-                    {({ open }) =>
-                      open ? (
-                        <ChevronUpIcon className="h-6 w-6" />
-                      ) : (
-                        <MenuIcon className="h-6 w-6" />
-                      )
-                    }
+                    {({ open }) => (open ? <ChevronUpIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />)}
                   </PopoverButton>
                   <AnimatePresence initial={false}>
                     {open && (
@@ -100,21 +75,14 @@ export function Header() {
                           as={motion.div}
                           initial={{ opacity: 0, y: -32 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{
-                            opacity: 0,
-                            y: -32,
-                            transition: { duration: 0.2 },
-                          }}
-                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pt-32 pb-6 shadow-2xl shadow-gray-900/20"
+                          exit={{ opacity: 0, y: -32, transition: { duration: 0.2 } }}
+                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pt-24 pb-6 shadow-2xl shadow-gray-900/20"
                         >
                           <div className="space-y-4">
-                            <MobileNavLink href="/#features">
-                              Features
-                            </MobileNavLink>
-                            <MobileNavLink href="/#reviews">
-                              Reviews
-                            </MobileNavLink>
-                            <MobileNavLink href="/contact">Support</MobileNavLink>
+                            <MobileNavLink href="/#features">Features</MobileNavLink>
+                            <MobileNavLink href="/#reviews">Reviews</MobileNavLink>
+                            <MobileNavLink href="/privacy">Privacy</MobileNavLink>
+                            <MobileNavLink href="/terms">Terms of Service</MobileNavLink>
                           </div>
                           <div className="mt-8 flex flex-col gap-4">
                             <Button href="/contact" variant="outline">
@@ -128,7 +96,7 @@ export function Header() {
                 </>
               )}
             </Popover>
-            <div className="flex items-center gap-6 max-lg:hidden">
+            <div className="max-lg:hidden">
               <Button href="/contact" variant="outline">
                 Contact Support
               </Button>
