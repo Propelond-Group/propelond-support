@@ -7,12 +7,13 @@ export const metadata: Metadata = {
   title: 'Contact Support',
 }
 
-type ContactPageProps = {
-  searchParams?: Record<string, string | string[]>
-}
-
-export default function Contact({ searchParams }: ContactPageProps) {
-  const topicParam = typeof searchParams?.topic === 'string' ? searchParams.topic : undefined
+export default async function Contact({
+  searchParams,
+}: {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>
+}) {
+  const sp = await searchParams
+  const topicParam = typeof sp?.topic === 'string' ? sp.topic : undefined
   const defaultCategory = topicParam === 'account-deletion' ? 'account-deletion' : ''
   return (
     <SupportLayout
