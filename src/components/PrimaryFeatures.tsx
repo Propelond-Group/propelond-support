@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useId, useRef, useState } from 'react'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import clsx from 'clsx'
+import Image from 'next/image'
 import {
   type MotionProps,
   type Variant,
@@ -12,50 +13,30 @@ import {
 } from 'framer-motion'
 import { useDebouncedCallback } from 'use-debounce'
 
-import { AppScreen } from '@/components/AppScreen'
 import { CircleBackground } from '@/components/CircleBackground'
 import { Container } from '@/components/Container'
-import { PhoneFrame } from '@/components/PhoneFrame'
-import {
-  DiageoLogo,
-  LaravelLogo,
-  MirageLogo,
-  ReversableLogo,
-  StatamicLogo,
-  StaticKitLogo,
-  TransistorLogo,
-  TupleLogo,
-} from '@/components/StockLogos'
-
-const MotionAppScreenHeader = motion(AppScreen.Header)
-const MotionAppScreenBody = motion(AppScreen.Body)
-
-interface CustomAnimationProps {
-  isForwards: boolean
-  changeCount: number
-}
 
 const features = [
   {
-    name: 'Invite friends to grow your community',
+    name: 'Build your African profile',
     description:
-      'For every friend you invite to Propelond, you get early access to new features and exclusive content. And it\'s even better when you invite fellow African creators.',
+      'Create a profile that celebrates your African heritage. Share your culture, traditions, and connect with your community through personalized profiles.',
     icon: DeviceUserIcon,
-    screen: InviteScreen,
+    image: '/images/user_profile.png',
   },
   {
-    name: 'Real-time notifications and engagement',
+    name: 'Discover African stories in your feed',
     description:
-      'Get instant notifications when someone likes, comments, or shares your content. Stay connected with your African community in real-time.',
+      'Explore a curated feed of authentic African content. From traditional recipes to modern art, discover stories that resonate with your heritage.',
     icon: DeviceNotificationIcon,
-    screen: StocksScreen,
+    image: '/images/feed.png',
   },
   {
-    name: 'Share your authentic African stories',
+    name: 'Share your African story',
     description:
-      'We provide a safe space for African creators to share their culture, traditions, and experiences without fear of cultural appropriation.',
+      'Create and share posts that celebrate African culture. Whether it\'s food, music, art, or traditions, your story matters to the global African community.',
     icon: DeviceTouchIcon,
-    screen: InvestScreen,
+    image: '/images/create_post.png',
   },
 ]
 
@@ -137,276 +118,6 @@ function DeviceTouchIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-const headerAnimation: Variants = {
-  initial: { opacity: 0, transition: { duration: 0.3 } },
-  animate: { opacity: 1, transition: { duration: 0.3, delay: 0.3 } },
-  exit: { opacity: 0, transition: { duration: 0.3 } },
-}
-
-const maxZIndex = 2147483647
-
-const bodyVariantBackwards: Variant = {
-  opacity: 0.4,
-  scale: 0.8,
-  zIndex: 0,
-  filter: 'blur(4px)',
-  transition: { duration: 0.4 },
-}
-
-const bodyVariantForwards: Variant = (custom: CustomAnimationProps) => ({
-  y: '100%',
-  zIndex: maxZIndex - custom.changeCount,
-  transition: { duration: 0.4 },
-})
-
-const bodyAnimation: MotionProps = {
-  initial: 'initial',
-  animate: 'animate',
-  exit: 'exit',
-  variants: {
-    initial: (custom: CustomAnimationProps, ...props) =>
-      custom.isForwards
-        ? bodyVariantForwards(custom, ...props)
-        : bodyVariantBackwards,
-    animate: (custom: CustomAnimationProps) => ({
-      y: '0%',
-      opacity: 1,
-      scale: 1,
-      zIndex: maxZIndex / 2 - custom.changeCount,
-      filter: 'blur(0px)',
-      transition: { duration: 0.4 },
-    }),
-    exit: (custom: CustomAnimationProps, ...props) =>
-      custom.isForwards
-        ? bodyVariantBackwards
-        : bodyVariantForwards(custom, ...props),
-  },
-}
-
-type ScreenProps =
-  | {
-      animated: true
-      custom: CustomAnimationProps
-    }
-  | { animated?: false }
-
-function InviteScreen(props: ScreenProps) {
-  return (
-    <AppScreen className="w-full">
-      <MotionAppScreenHeader {...(props.animated ? headerAnimation : {})}>
-        <AppScreen.Title>Invite friends</AppScreen.Title>
-        <AppScreen.Subtitle>
-          Grow your <span className="text-white">African community</span> with every
-          invite.
-        </AppScreen.Subtitle>
-      </MotionAppScreenHeader>
-      <MotionAppScreenBody
-        {...(props.animated ? { ...bodyAnimation, custom: props.custom } : {})}
-      >
-        <div className="px-4 py-6">
-          <div className="space-y-6">
-            {[
-              { label: 'Full name', value: 'Aisha O. Adebayo' },
-              { label: 'Email address', value: 'aisha@propelond.com' },
-            ].map((field) => (
-              <div key={field.label}>
-                <div className="text-sm text-gray-500">{field.label}</div>
-                <div className="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
-                  {field.value}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 rounded-lg bg-gradient-to-br from-[#f44336] to-[#ff00d6] px-3 py-2 text-center text-sm font-semibold text-white">
-            Invite friend
-          </div>
-        </div>
-      </MotionAppScreenBody>
-    </AppScreen>
-  )
-}
-
-function StocksScreen(props: ScreenProps) {
-  return (
-    <AppScreen className="w-full">
-      <MotionAppScreenHeader {...(props.animated ? headerAnimation : {})}>
-        <AppScreen.Title>Feed</AppScreen.Title>
-        <AppScreen.Subtitle>Today&apos;s African stories</AppScreen.Subtitle>
-      </MotionAppScreenHeader>
-      <MotionAppScreenBody
-        {...(props.animated ? { ...bodyAnimation, custom: props.custom } : {})}
-      >
-        <div className="divide-y divide-gray-100">
-          {[
-            {
-              name: 'NigerianChef',
-              price: '2.4K',
-              change: '+156%',
-              color: '#F9322C',
-              logo: LaravelLogo,
-            },
-            {
-              name: 'KenyanDancer',
-              price: '5.1K',
-              change: '+89%',
-              color: '#5A67D8',
-              logo: TupleLogo,
-            },
-            {
-              name: 'GhanaianArtist',
-              price: '1.8K',
-              change: '+234%',
-              color: '#2A5B94',
-              logo: TransistorLogo,
-            },
-            {
-              name: 'SouthAfricanChef',
-              price: '3.2K',
-              change: '+67%',
-              color: '#3320A7',
-              logo: DiageoLogo,
-            },
-            {
-              name: 'EthiopianDesigner',
-              price: '890',
-              change: '+123%',
-              color: '#2A3034',
-              logo: StaticKitLogo,
-            },
-            {
-              name: 'TanzanianMusician',
-              price: '4.5K',
-              change: '+178%',
-              color: '#0EA5E9',
-              logo: StatamicLogo,
-            },
-            {
-              name: 'UgandanChef',
-              price: '1.2K',
-              change: '+145%',
-              color: '#16A34A',
-              logo: MirageLogo,
-            },
-            {
-              name: 'RwandanArtist',
-              price: '2.1K',
-              change: '+92%',
-              color: '#8D8D8D',
-              logo: ReversableLogo,
-            },
-                      ].map((creator) => (
-              <div key={creator.name} className="flex items-center gap-4 px-4 py-3">
-                <div
-                  className="flex-none rounded-full"
-                  style={{ backgroundColor: creator.color }}
-                >
-                  <creator.logo className="h-10 w-10" />
-                </div>
-                <div className="flex-auto text-sm text-gray-900">
-                  {creator.name}
-                </div>
-                <div className="flex-none text-right">
-                  <div className="text-sm font-medium text-gray-900">
-                    {creator.price}
-                  </div>
-                  <div
-                    className={clsx(
-                      'text-xs/5',
-                      creator.change.startsWith('+')
-                        ? 'text-[#f44336]'
-                        : 'text-gray-500',
-                    )}
-                  >
-                    {creator.change}
-                  </div>
-                </div>
-              </div>
-            ))}
-        </div>
-      </MotionAppScreenBody>
-    </AppScreen>
-  )
-}
-
-function InvestScreen(props: ScreenProps) {
-  return (
-    <AppScreen className="w-full">
-      <MotionAppScreenHeader {...(props.animated ? headerAnimation : {})}>
-        <AppScreen.Title>Create Post</AppScreen.Title>
-        <AppScreen.Subtitle>
-          Share your <span className="text-white">African story</span> with the world
-        </AppScreen.Subtitle>
-      </MotionAppScreenHeader>
-      <MotionAppScreenBody
-        {...(props.animated ? { ...bodyAnimation, custom: props.custom } : {})}
-      >
-        <div className="px-4 py-6">
-          <div className="space-y-4">
-            {/* Post Form */}
-            <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-[#f44336] to-[#ff00d6] rounded-full flex items-center justify-center text-white text-xs font-bold">
-                YC
-              </div>
-              <div className="flex-1">
-                <textarea
-                  placeholder="What\'s your African story today?"
-                  className="w-full border-0 bg-transparent text-sm text-gray-900 placeholder-gray-500 resize-none focus:outline-none focus:ring-0"
-                  rows={4}
-                />
-              </div>
-            </div>
-
-            {/* Media Options */}
-            <div className="flex items-center space-x-4 pt-3 border-t border-gray-100">
-              <button className="flex items-center space-x-2 text-xs text-gray-500 hover:text-gray-700">
-                <span>📸</span>
-                <span>Photo</span>
-              </button>
-              <button className="flex items-center space-x-2 text-xs text-gray-500 hover:text-gray-700">
-                <span>🎥</span>
-                <span>Video</span>
-              </button>
-              <button className="flex items-center space-x-2 text-xs text-gray-500 hover:text-gray-700">
-                <span>🎨</span>
-                <span>Art</span>
-              </button>
-              <button className="flex items-center space-x-2 text-xs text-gray-500 hover:text-gray-700">
-                <span>📍</span>
-                <span>Location</span>
-              </button>
-            </div>
-
-            {/* Privacy Settings */}
-            <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-              <div className="flex items-center space-x-2">
-                <span className="text-xs text-gray-500">🌍</span>
-                <span className="text-xs text-gray-700">Public</span>
-                <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 text-gray-400">
-                  <path
-                    d="M6 9l6 6 6-6"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <div className="text-xs text-gray-500">2.4K followers</div>
-            </div>
-
-            {/* Share Button */}
-            <div className="pt-3">
-              <button className="w-full rounded-lg bg-gradient-to-br from-[#f44336] to-[#ff00d6] px-4 py-3 text-center text-sm font-semibold text-white">
-                Share story
-              </button>
-            </div>
-          </div>
-        </div>
-      </MotionAppScreenBody>
-    </AppScreen>
-  )
-}
-
 function usePrevious<T>(value: T) {
   let ref = useRef<T | undefined>(undefined)
 
@@ -468,10 +179,10 @@ function FeaturesDesktop() {
         ))}
       </TabList>
       <div className="relative col-span-6">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0">
           <CircleBackground color="#13B5C8" className="animate-spin-slower" />
         </div>
-        <PhoneFrame className="z-10 mx-auto w-full max-w-[366px]">
+        <div className="relative z-10 mx-auto w-full max-w-[366px]">
           <TabPanels as={Fragment}>
             <AnimatePresence
               initial={false}
@@ -484,16 +195,27 @@ function FeaturesDesktop() {
                     key={feature.name + changeCount}
                     className="col-start-1 row-start-1 flex focus:outline-offset-32 data-selected:not-data-focus:outline-hidden"
                   >
-                    <feature.screen
-                      animated
-                      custom={{ isForwards, changeCount }}
-                    />
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.4 }}
+                      className="w-full"
+                    >
+                      <Image
+                        src={feature.image}
+                        alt={feature.name}
+                        width={366}
+                        height={366}
+                        className="rounded-lg shadow-lg"
+                      />
+                    </motion.div>
                   </TabPanel>
                 ) : null,
               )}
             </AnimatePresence>
           </TabPanels>
-        </PhoneFrame>
+        </div>
       </div>
     </TabGroup>
   )
@@ -548,15 +270,21 @@ function FeaturesMobile() {
             className="w-full flex-none snap-center px-4 sm:px-6"
           >
             <div className="relative transform overflow-hidden rounded-2xl bg-gray-800 px-5 py-6">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0">
                 <CircleBackground
                   color="#13B5C8"
                   className={featureIndex % 2 === 1 ? 'rotate-180' : undefined}
                 />
               </div>
-              <PhoneFrame className="relative mx-auto w-full max-w-[366px]">
-                <feature.screen />
-              </PhoneFrame>
+              <div className="relative z-10 mx-auto w-full max-w-[366px]">
+                <Image
+                  src={feature.image}
+                  alt={feature.name}
+                  width={366}
+                  height={366}
+                  className="rounded-lg shadow-lg"
+                />
+              </div>
               <div className="absolute inset-x-0 bottom-0 bg-gray-800/95 p-6 backdrop-blur-sm sm:p-10">
                 <feature.icon className="h-8 w-8" />
                 <h3 className="mt-6 text-sm font-semibold text-white sm:text-lg">
@@ -605,12 +333,12 @@ export function PrimaryFeatures() {
       <Container>
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-3xl">
           <h2 className="text-3xl font-medium tracking-tight text-white">
-            Every feature you need to share your story. Try it for yourself.
+            Everything you need to celebrate African culture. See it in action.
           </h2>
           <p className="mt-2 text-lg text-gray-400">
-            Propelond was built for African creators like you who want to share 
-            their culture, connect with their community, and amplify their voices 
-            globally. If other platforms don&apos;t understand your story, Propelond does.
+            Propelond is designed specifically for African creators and communities. 
+            From building your profile to sharing your stories, every feature is 
+            crafted to amplify African voices and celebrate our rich heritage.
           </p>
         </div>
       </Container>
