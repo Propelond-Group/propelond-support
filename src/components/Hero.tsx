@@ -3,6 +3,7 @@ import Image from 'next/image'
 import clsx from 'clsx'
 
 import { AppStoreLink } from '@/components/AppStoreLink'
+import { PlayStoreLink } from '@/components/PlayStoreLink'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 
@@ -75,16 +76,17 @@ function BackgroundIllustration(props: React.ComponentPropsWithoutRef<'div'>) {
   )
 }
 
-function PlayIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+function YouTubeIcon(props: React.ComponentPropsWithoutRef<'div'>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <circle cx="12" cy="12" r="11.5" stroke="#D4D4D4" />
-      <path
-        d="M9.5 14.382V9.618a.5.5 0 0 1 .724-.447l4.764 2.382a.5.5 0 0 1 0 .894l-4.764 2.382a.5.5 0 0 1-.724-.447Z"
-        fill="#A3A3A3"
-        stroke="#A3A3A3"
+    <div {...props} className="flex items-center justify-center">
+      <Image
+        src="/icon/youtube.svg"
+        alt="YouTube"
+        width={24}
+        height={24}
+        className="h-6 w-6"
       />
-    </svg>
+    </div>
   )
 }
 
@@ -104,12 +106,14 @@ export function Hero() {
             </p>
             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
               <AppStoreLink />
+              <PlayStoreLink />
               <Button
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                href="https://www.youtube.com/watch?v=rBj3ubqV98w"
                 variant="outline"
+                className="flex items-center justify-center"
               >
-                <PlayIcon className="h-6 w-6 flex-none" />
-                <span className="ml-2.5">Watch the video</span>
+                <YouTubeIcon className="flex-none" />
+                <span className='ml-2.5'>Watch the video</span>
               </Button>
             </div>
           </div>

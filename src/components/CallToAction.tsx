@@ -1,4 +1,5 @@
 import { AppStoreLink } from '@/components/AppStoreLink'
+import { PlayStoreLink } from '@/components/PlayStoreLink'
 import { CircleBackground } from '@/components/CircleBackground'
 import { Container } from '@/components/Container'
 
@@ -21,8 +22,9 @@ export function CallToAction() {
             account today to start connecting with the African community and 
             sharing your culture with the world.
           </p>
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex justify-center gap-x-6">
             <AppStoreLink color="white" />
+            <PlayStoreLink color="white" />
           </div>
         </div>
       </Container>
